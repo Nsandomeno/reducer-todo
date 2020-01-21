@@ -9,7 +9,8 @@ import TodoDisplay from './components/TodoDisplay.js';
 function App() {
   return (
     <div className="App">
-      <TodoDisplay />
+      <TodoForm />
+      {/* <TodoDisplay /> */}
     </div>
   );
 }

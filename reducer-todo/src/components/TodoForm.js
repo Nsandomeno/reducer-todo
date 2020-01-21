@@ -4,11 +4,23 @@ import { initialState, simpleReducer } from '../reducers/reducer.js';
 
 function TodoForm() {
     const [state, dispatch] = useReducer(simpleReducer, initialState)
-    const [newTodo, addNewTodo] = useState('')
+    // console.log("This is initial state in TodoForm:", initialState)
+    const [newTodo, setNewTodo] = useState('')
+    // console.log("This is the newTodo in TodoForm", newTodo)
+    const [todoList, addNewTodo] = useState(state.todos)
+    console.log("This is beg. todoList:", todoList)
 
     const handleInput = (event) => {
-        addNewTodo(event.target.value)
+        setNewTodo(event.target.value)
     }
+
+    const addItem = () => {
+        dispatch({ type: 'ADD_TODO', payload: newTodo })
+        setNewTodo('')
+    }
+
+   
+
     return(
         <div>
             <div>
@@ -19,11 +31,20 @@ function TodoForm() {
                 <input 
                 type="text"
                 name="newTodo"
-                // value={newTodo}
-                // On Change
+                value={newTodo}
+                onChange={handleInput}
                 />
             </form>
-            <button>Add Todo</button>
+            <button onClick={addItem}>Add Todo</button>
+            </div>
+            <div>
+                {
+                    initialState.todos.map((todo => 
+                        <div key={todo.id}>
+                            <h4> {todo.item} </h4>
+                        </div>
+                        ))
+                }
             </div>
         </div>
     )

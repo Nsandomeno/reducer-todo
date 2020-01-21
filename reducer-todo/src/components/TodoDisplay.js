@@ -7,7 +7,7 @@ const [state, dispatch] = useReducer(simpleReducer, initialState)
     return (
         <div>
             {
-                state.map((todo => 
+                state.todos.map((todo => 
                     <div key={todo.id}>
                         <h3> {todo.item} </h3>
                     </div>
