@@ -25,15 +25,6 @@ function TodoForm() {
             </form>
             <button>Add Todo</button>
             </div>
-            <div>
-            {
-                initialState.map((todo => 
-                    <div key={todo.id}> 
-                    <h1> {todo.item} </h1>
-                    </div>
-                    ))
-            }
-            </div>
         </div>
     )
 }

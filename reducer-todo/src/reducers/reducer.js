@@ -8,6 +8,7 @@ export const initialState = [
 
 export const simpleReducer = (state, action) => {
     switch(action.type) {
+
         default: 
             return state
     }

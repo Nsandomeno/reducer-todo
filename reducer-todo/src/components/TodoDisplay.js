@@ -1,21 +1,20 @@
-// import React from 'react';
-// import { initialState } from '../reducers/reducer.js';
-// import TodoCard from './TodoCard.js';
+import React, { useState, useReducer} from 'react';
 
-// function TodoDisplay() {
+import { simpleReducer, initialState } from '../reducers/reducer.js';
 
-//     return(
-//         <div>
-//             Hello from TodoDisplay Component!
-//             <div>
-//                 {
-//                     initialState.map((todo => 
-//                         <TodoCard todo={todo.item} />
-//                         ))
-//                 }
-//             </div>
-//         </div>
-//     )
-// }
+function TodoDisplay() {
+const [state, dispatch] = useReducer(simpleReducer, initialState)
+    return (
+        <div>
+            {
+                state.map((todo => 
+                    <div key={todo.id}>
+                        <h3> {todo.item} </h3>
+                    </div>
+                    ))
+            }
+        </div>
+    )
+}
 
-// export default TodoDisplay;
+export default TodoDisplay;
