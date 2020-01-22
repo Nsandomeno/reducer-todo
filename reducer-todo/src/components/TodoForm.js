@@ -23,6 +23,11 @@ function TodoForm() {
         dispatch({ type: 'TOGGLE_COMPLETE', payload: id })
         console.log("Toggle..., Toggle...")
     }
+
+    const clearComplete = () => {
+        dispatch({ type: 'CLEAR_COMPLETE' })
+        console.log("Complete items tossed!")
+    }
    
 
     return(
@@ -40,6 +45,7 @@ function TodoForm() {
                 />
             </form>
             <button onClick={addItem}>Add Todo</button>
+            <button onClick={clearComplete}>Clear Complete</button>
             </div>
             <div>
                 {
