@@ -1,19 +1,29 @@
-export const initialState = { 
-    todos: [
+export const initialState = [
+    
         {
         item: 'Learn about reducers',
         completed: false,
         id: 3892987589
         }
+    
     ]
-}
 
 export const simpleReducer = (state, action) => {
     switch(action.type) {
         case 'ADD_TODO':
-
-            return initialState.todos.push( { item: action.payload, completed: false, id: new Date() })
-               
+            return [...state, { item: action.payload, completed: false, id: new Date() }];
+            
+         case 'TOGGLE_COMPLETE':
+            return  state.map((todo) => {
+                if (todo.id === action.payload) {
+                    return {
+                        ...todo,
+                        completed: !todo.completed
+                    }
+                } else {
+                    return todo
+                }
+            });
 
         default: 
             return state

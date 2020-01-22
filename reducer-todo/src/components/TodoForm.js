@@ -1,14 +1,14 @@
 import React, { useReducer, useState } from 'react';
 import { initialState, simpleReducer } from '../reducers/reducer.js';
 // import TodoDisplay from './TodoDisplay.js';
+import '../App.css';
 
 function TodoForm() {
     const [state, dispatch] = useReducer(simpleReducer, initialState)
-    // console.log("This is initial state in TodoForm:", initialState)
+    console.log("This is state in TodoForm:", state)
     const [newTodo, setNewTodo] = useState('')
-    // console.log("This is the newTodo in TodoForm", newTodo)
-    const [todoList, addNewTodo] = useState(state.todos)
-    console.log("This is beg. todoList:", todoList)
+
+
 
     const handleInput = (event) => {
         setNewTodo(event.target.value)
@@ -19,6 +19,10 @@ function TodoForm() {
         setNewTodo('')
     }
 
+    const toggleComplete = (id) => {
+        dispatch({ type: 'TOGGLE_COMPLETE', payload: id })
+        console.log("Toggle..., Toggle...")
+    }
    
 
     return(
@@ -39,8 +43,12 @@ function TodoForm() {
             </div>
             <div>
                 {
-                    initialState.todos.map((todo => 
-                        <div key={todo.id}>
+                    state.map((todo => 
+                        <div
+                        className={`reg${todo.completed ? ' complete' : ''}`}
+                        key={todo.id}
+                        onClick={() => toggleComplete(todo.id)}
+                        >
                             <h4> {todo.item} </h4>
                         </div>
                         ))
